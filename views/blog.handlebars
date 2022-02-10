@@ -1,0 +1,22 @@
+
+{{!-- display blog info even no signin --}}
+{{> bloginfo }}
+
+{{!-- only display when signin  --}}
+{{#if logged_in}}
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">Add Comment</button>
+  </div>
+</form>
+{{/if}}
+
+{{> comment }}
+
+{{#if logged_in}}
+<script src="../public/js/comment.js"></script>
+{{/if}}

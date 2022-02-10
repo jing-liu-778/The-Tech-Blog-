@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Comment, User, Blog } = require("../models");
 const withAuth = require("../utils/auth");
 
+// homepage
 router.get("/", async (req, res) => {
   try {
     // Get all blogs and JOIN with user data
@@ -28,21 +29,30 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/project/:id", async (req, res) => {
+// get one blog by id
+router.get("/blog/:id", async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const blogData = await Blog.findByPk(req.params.id, {
       include: [
         {
           model: User,
           attributes: ["name"],
         },
+        {
+          model: Comment,
+          attributes: ["comment_text", "date_created", "user_id", "blog_id"],
+        },
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const blog = blogData.get({ plain: true });
+    console.log(
+      "each blog data---------------->",
+      JSON.stringify(blog, null, 2)
+    );
 
-    res.render("project", {
-      ...project,
+    res.render("blog", {
+      ...blog,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
