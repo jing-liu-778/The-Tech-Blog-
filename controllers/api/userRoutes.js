@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Blog, Comment } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
@@ -18,6 +18,7 @@ router.post("/", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+    // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
@@ -26,10 +27,10 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect email or password, please try again" });
       return;
     }
-    console.log("userdata------>", JSON.stringify(userData, null, 2));
+    console.log("userData----------", userData);
+    // Verify the posted password with the password store in the database
     const validPassword = await userData.checkPassword(req.body.password);
-    console.log("validate----->", validPassword);
-
+    console.log("validepassword------------->", validPassword);
     if (!validPassword) {
       res
         .status(400)
@@ -37,6 +38,7 @@ router.post("/login", async (req, res) => {
       return;
     }
 
+    // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
