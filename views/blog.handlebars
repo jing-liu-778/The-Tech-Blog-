@@ -1,9 +1,23 @@
 
 {{!-- display blog info even no signin --}}
-{{> bloginfo }}
 
+<div class="text-center">
+  <h2>{{title}}</h2>
+  <p>{{{get_emoji}}}</p>
+  <p>{{blog_text}}</p>
+  <strong>Posted by {{user.name}} on {{format_date date_created}}</strong>
+  {{#if logged_in}}
+  <div class="col-md-4">
+    <button class="btn btn-sm btn-danger" data-id="{{blog.id}}">DELETE</button>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-sm btn-success" data-id="{{blog.id}}">UPDATE</button>
+  </div>
+</div>
+{{/if}}
 {{!-- only display when signin  --}}
 {{#if logged_in}}
+
 <div>
   <form class="form new-comment-form">
     <div class="form-group">
@@ -20,5 +34,6 @@
 {{> comment }}
 
 {{#if logged_in}}
-<script src="/js/comment.js"></script>
+{{!-- <script src="/js/comment.js"></script> --}}
+<script src="/js/dashboard.js"></script>
 {{/if}}
