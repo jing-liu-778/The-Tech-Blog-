@@ -3,7 +3,7 @@ const newFormHandler = async (event) => {
 
   const title = document.querySelector("#blog-title").value.trim();
   const content = document.querySelector("#blog-content").value.trim();
-
+  // add post
   if (title && content) {
     const response = await fetch(`/api/blogs`, {
       method: "POST",
@@ -20,7 +20,7 @@ const newFormHandler = async (event) => {
     }
   }
 };
-
+// delete post
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
