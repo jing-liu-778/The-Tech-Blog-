@@ -5,10 +5,10 @@
   <h2>{{title}}</h2>
   <p>{{{get_emoji}}}</p>
   <div class="form-group">
-      {{!-- <label for="comment-text">comment on this article:</label> --}}
+      
       <textarea class="form-input" id="blog-text" title="blog-text">{{blog_text}}</textarea>
   </div>
-  {{!-- <p>{{blog_text}}</p> --}}
+ 
   <strong>Posted by {{user.name}} on {{format_date date_created}}</strong>
   {{!-- only display when signin  --}}
   {{#if logged_in}}
@@ -38,24 +38,26 @@
 
   <div class="col-md-6 comment-list">
     <h5>Comments</h5>
-     {{user.name}}
+ 
 
-    {{#each blogs as |blog|}}
+    {{!-- {{#each blog.comments as |comment|}} --}}
       <div class="row mb-2">
         <div class="col-md-8">
           <div class="meta">
             {{user.name}}
             on
+            {{#each comments}}
             {{format_date date_created}}
           </div>
-          <p class="comment">{{comments.comment_text}}</p>
+          <p class="comment">{{comment_text}}</p>
+            {{/each}}
         </div>
       </div>
-    {{/each}}
+    {{!-- {{/each}} --}}
   </div>
 
 
 {{#if logged_in}}
-{{!-- <script src="/js/comment.js"></script> --}}
+
 <script src="/js/dashboard.js"></script>
 {{/if}}
