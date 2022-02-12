@@ -39,21 +39,23 @@
   <div class="col-md-6 comment-list">
     <h5>Comments</h5>
  
-
+     {{#each comments}}
     {{!-- {{#each blog.comments as |comment|}} --}}
       <div class="row mb-2">
         <div class="col-md-8">
+          <p class="comment">{{comment_text}}</p>
           <div class="meta">
             {{user.name}}
-            on
-            {{#each comments}}
+            created on
+            {{!-- {{#each comments}} --}}
             {{format_date date_created}}
           </div>
-          <p class="comment">{{comment_text}}</p>
-            {{/each}}
+          
+            {{!-- {{/each}} --}}
         </div>
       </div>
     {{!-- {{/each}} --}}
+     {{/each}}
   </div>
 
 
