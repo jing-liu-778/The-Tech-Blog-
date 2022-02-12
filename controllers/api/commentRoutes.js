@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 });
 
 // post comment
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   console.log("req-body-> ", req.body);
   console.log("req-session->: ", req.session);
   try {

@@ -41,6 +41,7 @@ router.get("/blog/:id", async (req, res) => {
         {
           model: Comment,
           attributes: ["comment_text", "date_created", "user_id", "blog_id"],
+          // this way can loop comment also include user table
           include: {
             model: User,
             attributes: ["name"],
@@ -57,6 +58,44 @@ router.get("/blog/:id", async (req, res) => {
     // );
 
     res.render("blog", {
+      ...blog,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// edit blog route
+
+router.get("/editblog/:id", async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["name"],
+        },
+        {
+          model: Comment,
+          attributes: ["comment_text", "date_created", "user_id", "blog_id"],
+          // this way can loop comment also include user table
+          include: {
+            model: User,
+            attributes: ["name"],
+          },
+        },
+      ],
+    });
+
+    const blog = blogData.get({ plain: true });
+    console.log("blog-->: ", JSON.stringify(blog, null, 2));
+    // console.log(
+    //   "each blog data---------------->",
+    //   JSON.stringify(blog, null, 2)
+    // );
+
+    res.render("editblog", {
       ...blog,
       logged_in: req.session.logged_in,
     });

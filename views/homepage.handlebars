@@ -5,7 +5,11 @@
       <h2>
         <!-- Call helper function with triple brackets to render the emoji span as HTML -->
         {{{get_emoji}}}
+        {{!-- {{#if logged_in}}
+          <a href="/view/{{blog.id}}">{{blog.title}}</a>
+        {{else}} --}}
         <a href="/blog/{{blog.id}}">{{blog.title}}</a>
+        {{!-- {{/if}} --}}
       </h2>
       <p>
         {{blog.blog_text}}
