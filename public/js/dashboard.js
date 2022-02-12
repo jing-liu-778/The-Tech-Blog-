@@ -1,31 +1,33 @@
-const newFormHandler = async (event) => {
-  event.preventDefault();
+// const newFormHandler = async (event) => {
+//   event.preventDefault();
 
-  const title = document.querySelector("#blog-title").value.trim();
-  const blog_text = document.querySelector("#blog-content").value.trim();
-  console.log("create blog content----->", blog_text);
-  console.log("create blog title----->", title);
-  // add post
-  if (title && blog_text) {
-    const response = await fetch(`/api/blogs`, {
-      method: "POST",
-      body: JSON.stringify({ title, blog_text }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+//   const title = document.querySelector("#blog-title").value.trim();
+//   const blog_text = document.querySelector("#blog-content").value.trim();
+//   console.log("create blog content----->", blog_text);
+//   console.log("create blog title----->", title);
+//   // add post
+//   if (title && blog_text) {
+//     const response = await fetch(`/api/blogs`, {
+//       method: "POST",
+//       body: JSON.stringify({ title, blog_text }),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
 
-    if (response.ok) {
-      document.location.replace("/dashboard");
-    } else {
-      alert("Failed to create blog");
-    }
-  }
-};
+//     if (response.ok) {
+//       document.location.replace("/dashboard");
+//     } else {
+//       alert("Failed to create blog");
+//     }
+//   }
+// };
 // delete post
 const delButtonHandler = async (event) => {
+  console.log("delete button work?");
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
+    console.log("id-------------->", id);
 
     const response = await fetch(`/api/blogs/${id}`, {
       method: "DELETE",
@@ -40,13 +42,6 @@ const delButtonHandler = async (event) => {
 };
 // update post
 
-document
-  .querySelector(".new-project-form")
-  .addEventListener("submit", newFormHandler);
-
-document
-  .querySelector(".project-list")
-  .addEventListener("click", delButtonHandler);
 // add comment
 const newCommentHandler = async (event) => {
   event.preventDefault();
@@ -69,6 +64,14 @@ const newCommentHandler = async (event) => {
     }
   }
 };
+
+// document
+//   .querySelector(".new-project-form")
+//   .addEventListener("submit", newFormHandler);
+
+document
+  .querySelector(".delete-btn")
+  .addEventListener("click", delButtonHandler);
 
 document
   .querySelector(".new-comment-form")

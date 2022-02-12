@@ -46,6 +46,7 @@ router.get("/blog/:id", async (req, res) => {
     });
 
     const blog = blogData.get({ plain: true });
+
     console.log(
       "each blog data---------------->",
       JSON.stringify(blog, null, 2)
