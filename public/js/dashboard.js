@@ -41,7 +41,29 @@ const delButtonHandler = async (event) => {
   }
 };
 // update post
+const updateHandler = async (event) => {
+  event.preventDefault();
+  const blog_text = document.querySelector("#blog-text").value.trim();
+  if (blog_text) {
+    const id = event.target.getAttribute("data-id");
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        // title,
+        blog_text,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert("Failed to update");
+    }
+  }
+};
 // add comment
 const newCommentHandler = async (event) => {
   event.preventDefault();
@@ -76,3 +98,5 @@ document
 document
   .querySelector(".new-comment-form")
   .addEventListener("submit", newCommentHandler);
+
+document.querySelector(".update-btn").addEventListener("click", updateHandler);

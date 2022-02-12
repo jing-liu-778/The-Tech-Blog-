@@ -4,15 +4,20 @@
 <div class="text-center delete-form">
   <h2>{{title}}</h2>
   <p>{{{get_emoji}}}</p>
-  <p>{{blog_text}}</p>
+  <div class="form-group">
+      {{!-- <label for="comment-text">comment on this article:</label> --}}
+      <textarea class="form-input" id="blog-text" title="blog-text">{{blog_text}}</textarea>
+  </div>
+  {{!-- <p>{{blog_text}}</p> --}}
   <strong>Posted by {{user.name}} on {{format_date date_created}}</strong>
   {{!-- only display when signin  --}}
   {{#if logged_in}}
   <div class="col-md-4 ">
+    {{!-- data-id="{{blog.id}}" is wrong? --}}
     <button class="btn btn-sm btn-danger delete-btn" data-id="{{id}}">DELETE</button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-sm btn-success" data-id="{{blog.id}}">UPDATE</button>
+    <button class="btn btn-sm btn-success update-btn" data-id="{{id}}">UPDATE</button>
   </div>
 </div>
 {{!-- comment form  --}}
