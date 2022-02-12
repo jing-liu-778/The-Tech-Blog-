@@ -41,3 +41,20 @@ header,
   margin-bottom: 0.5%;
   opacity: 0.6;
 }
+
+.buttons {
+  display: flex;
+  /* display: inline-block; */
+  justify-content: space-around;
+  width: 100%;
+}
+.comment-list {
+  margin: auto;
+}
+.comment-list h5 {
+  text-align: center;
+}
+.row-list {
+  justify-content: center;
+  text-align: center;
+}

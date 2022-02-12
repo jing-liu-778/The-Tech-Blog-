@@ -14,6 +14,7 @@ const newFormHandler = async (event) => {
         "Content-Type": "application/json",
       },
     });
+    console.log("create a blog----->", response);
 
     if (response.ok) {
       document.location.replace("/dashboard");

@@ -21,7 +21,7 @@
 <div>
   <form class="form new-comment-form">
     <div class="form-group">
-      <label for="comment-text">comment on this article:</label>
+      <label for="comment-text">comment on this blog:</label>
       <textarea class="form-input" id="comment-text" title="comment-text"></textarea>
     </div>
     <div class="form-group">
@@ -38,7 +38,7 @@
  
      {{#each comments}}
     {{!-- {{#each blog.comments as |comment|}} --}}
-      <div class="row mb-2">
+      <div class="row mb-2 row-list">
         <div class="col-md-8">
           <p class="comment">{{comment_text}}</p>
           <div class="meta">
