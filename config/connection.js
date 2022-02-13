@@ -1,39 +1,27 @@
 const Sequelize = require("sequelize");
 require("dotenv").config();
 
-// let sequelize;
+// Heroku use this
+// const sequelize = new Sequelize(
+//   process.env.HR_DB,
+//   process.env.HR_USER,
+//   process.env.HR_PASS,
+//   {
+//     host: process.env.HR_HOST,
+//     dialect: "mysql",
+//   }
+// );
+
+// Localhost use this
 const sequelize = new Sequelize(
-  "heroku_c928792223d0cda",
-  "b5aae6f64529ac",
-  "0ba463fb",
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    host: "us-cdbr-east-05.cleardb.net",
+    host: "localhost",
     dialect: "mysql",
+    port: 3306,
   }
 );
 
-// if (process.env.JAWSDB_URL) {
-//   sequelize = new Sequelize(process.env.JAWSDB_URL);
-// } else {
-//   sequelize = new Sequelize(
-//     process.env.DB_NAME,
-//     process.env.DB_USER,
-//     process.env.DB_PASSWORD,
-//     {
-//       host: "localhost",
-//       dialect: "mysql",
-//       port: 3306,
-//     }
-//   );
-// }
-
 module.exports = sequelize;
-
-// const mysql = require("mysql");
-// var connection = mysql.createPool({
-//   host: "us-cdbr-east-05.cleardb.net",
-//   user: "b5aae6f64529ac",
-//   password: "0ba463fb",
-//   database: "heroku_c928792223d0cda",
-// });
-// module.exports = connection;
